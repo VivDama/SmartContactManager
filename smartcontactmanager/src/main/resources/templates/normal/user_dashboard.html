@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base_user::layout(~{::section})">
+<head>
+	<meta charset="UTF-8" />
+	<title>Smart Contact Manager | Dashboard</title>
+</head>
+<body>
+	<section>
+		<div class="card  text-center d-flex flex-row mr-3">
+			<div class="card-body ml-5">
+				<img style="width: 300px; height: 300px;border-style: solid;" class="contact_profile_picture"
+					th:src="@{'/images/' + ${user.getImageUrl}}" alt="" />
+					<br />
+				<h4 class="u-font-montserrat u-custom-font " th:text="'Welcome '+${user.name}+', to your personal Dashboard'"></h4>
+				<table class="table text-center table-borderless mt-3 ml-5">
+					<thead>
+						<tr>
+							<th scope="col">User ID</th>
+							<th scope="col">SCMUSER<span th:text="${user.id}"></span></th>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row">Contacts</th>
+							<td><span th:text="${contact_count}"></span></td>
+						</tr>
+
+						<tr>
+							<th scope="row">Personal Note</th>
+							<td><span th:text="${user.about}"></span></td>
+						</tr>
+
+					</tbody>
+
+				</table>
+				
+			</div>
+			<div class="container">
+				<img class="contact_dashboard_picture"
+					th:src="@{'/images/Man_Dashboard.png'}" alt="" />
+			</div>
+			
+		</div>
+		<script>
+			//alert('this is dashboard');
+			$(document).ready(()=>{
+				$(".item").removeClass("active-sidebar");
+				$("#home-link").addClass("active-sidebar");
+			});
+		</script>
+		
+	</section>
+</body>
+</html>

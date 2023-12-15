@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base_user::layout(~{::section})">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>About</title>
+</head>
+
+<body>
+	<section>
+		<div class="card mr-3 ml-3">
+			<div class="card-body text-center">
+				<img style="width: 300px; height: 300px;border-style: solid;" class="contact_profile_picture"
+					th:src="@{'/images/'+ ${user.getImageUrl}}" alt="" />
+				<h2 th:text="${user.name}"></h2>
+				<table class="table text-center table-borderless mt-3 ml-5">
+					<thead>
+						<tr>
+							<th scope="col">#User ID</th>
+							<th scope="col">SCMUSER<span th:text="${user.id}"></span></th>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<th scope="row">Email</th>
+							<td><span th:text="${user.email}"></span></td>
+						</tr>
+
+						<tr>
+							<th scope="row">Role</th>
+							<td><span th:text="${user.role}"></span></td>
+						</tr>
+
+						<tr>
+							<th scope="row">Personal Note</th>
+							<td><span th:text="${user.about}"></span></td>
+						</tr>
+
+					</tbody>
+
+				</table>
+			</div>
+		</div>
+		<script>
+			//alert('this is dashboard');
+			$(document).ready(()=>{
+				$(".item").removeClass("active-sidebar");
+				$("#profile-link").addClass("active-sidebar");
+			});
+		</script>
+	</section>
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>About</title>
+</head>
+
+<body>
+	<section>
+		<div id="login">
+			<div class="container">
+				<div id="login-row" class="row justify-content-center align-items-center">
+
+					<div id="login-column" class="col-md-6">
+						<div id="login-box" style="height: 230px;" class="col-md-12">
+							<div th:if="${session.message}" class="container mt-3">
+								<div th:classappend="${'alert-' + session.message.type}" class="alert text-center"
+									role="alert">
+									<span th:text="${session.message.content}"></span>
+									<th:block th:text="${@sessionHelper.removeMessageFromSession()}"></th:block>							
+								</div>
+							</div>
+							<form th:action="@{/verify_otp}" method="post">
+								<div class="form-group">
+									<input required name="otp"  minlength="6" maxlength="6" type="text" placeholder="Enter OTP here"
+										class="form-control" />
+								</div>
+								<div class="container text-center">
+									<button class="btn btn-success">Submit</button>
+								</div>
+							</form>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</section>
+</body>
+
+</html>

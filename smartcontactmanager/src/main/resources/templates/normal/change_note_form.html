@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base_user::layout(~{::section})">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>Smart Contact Manager | Dashboard</title>
+</head>
+
+<body>
+	<section>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="card">
+					<div class="card-body">
+						<h3 class="my-3">Change Personal Note</h3>
+						<form th:action="@{/user/change_personal_note}" method="post">
+							
+							<!--Old password field-->
+							<div class="form-group">
+								<input name="newPersonalNote" type="text" class="form-control" th:value="${user.about}" />
+							</div>						
+							<div class="container-fluid">
+								<button class="btn btn-success text-center" type="submit">Save change</button>
+								<a th:href="@{/user/settings}"><button class="btn btn-warning text-center">Back</button></a>
+								
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			//alert('this is dashboard');
+			$(document).ready(() => {
+				$(".item").removeClass("active-sidebar");
+				$("#settings-link").addClass("active-sidebar");
+			});
+		</script>
+
+	</section>
+</body>
+
+</html>

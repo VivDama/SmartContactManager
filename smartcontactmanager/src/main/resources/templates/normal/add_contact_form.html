@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base_user::layout(~{::section})">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>About</title>
+</head>
+
+<body>
+	<section>
+
+		<div class="card mr-5 ml-3 w-90">
+			<h1 class="text-center  mt-5">Add Your New Contact</h1>
+			<div class="card-body">
+				<div class="container-fluid mt-1">
+					<div class="col-md-10 offset-md-1">
+						<form action="#" method="post" enctype="multipart/form-data"
+							th:action="@{/user/process_contact}" th:object="${contact}" class="mt-2">							
+							<!-- First name -->
+							<div th:with="nameFieldErrors = ${session.message != null ? @sessionHelper.getFieldErrors('name',session.message) : null}"
+								class="input-group">
+								<div class="input-group-prepend">
+									<div class="input-group-text">
+										<i class="fas fa-user-alt"></i>
+									</div>
+								</div>
+								<input type="text" id="firstname" name="name"
+									placeholder="Enter first name of the contact" class="form-control"
+									th:classappend="${session.containsKey('message') and nameFieldErrors != null ? 'is-invalid':''}"
+									th:value="${contact.name}" />
+								<div th:if="${session.message}" class="invalid-feedback">
+									<!--<div><h1 th:text="${session.message.content}"></h1></div>-->
+									<div th:each="e : ${nameFieldErrors}" th:text="${e.getDefaultMessage}">
+									</div>
+								</div>
+							</div>
+							<!--End of First name-->
+
+							<!-- Second name -->
+							<div th:with="secNameFieldErrors = ${session.message != null ? @sessionHelper.getFieldErrors('secondName',session.message) : null}"
+								class="input-group  mt-3">
+								<div class="input-group-prepend">
+									<div class="input-group-text">
+										<i class="fa fa-plus"></i>
+									</div>
+								</div>
+								<input type="text" id="secondname" name="secondName"
+									placeholder="Enter second name of the contact" class="form-control"
+									th:classappend="${session.containsKey('message') and secNameFieldErrors != null ? 'is-invalid':''}"
+									th:value="${contact.secondName}" />
+								<div th:if="${session.message}" class="invalid-feedback">
+									<div th:each="e : ${secNameFieldErrors}" th:text="${e.getDefaultMessage}">
+									</div>
+								</div>
+							</div>
+							<!--End of Second name-->
+
+							<!-- Phone field -->
+							<div th:with="phoneFieldErrors = ${session.message != null ? @sessionHelper.getFieldErrors('phone',session.message) : null}"
+								class="input-group  mt-3">
+								<div class="input-group-prepend">
+									<div class="input-group-text">
+										<i class="fa fa-phone"></i>
+									</div>
+								</div>
+								<input type="number" id="phone" name="phone"
+									placeholder="Enter the phone number of the contact" class="form-control"
+									th:classappend="${session.containsKey('message') and phoneFieldErrors != null ? 'is-invalid':''}"
+									th:value="${contact.phone}" />
+								<div th:if="${phoneFieldErrors}" class="invalid-feedback">
+									<!--<div><h1 th:text="${session.message.content}"></h1></div>-->
+									<div th:each="e : ${phoneFieldErrors}" th:text="${e.getDefaultMessage}">
+									</div>
+								</div>
+							</div>
+							<!--End of Phone field-->
+
+
+							<!-- Email field -->
+							<div th:with="emailFieldErrors = ${session.message != null ? @sessionHelper.getFieldErrors('email',session.message) : null}"
+								class="input-group  mt-3">
+								<div class="input-group-prepend">
+									<div class="input-group-text">
+										@
+									</div>
+								</div>
+								<input type="email" id="email" name="email"
+									placeholder="Enter the Email id of the contact" class="form-control"
+									th:classappend="${session.containsKey('message') and emailFieldErrors != null ? 'is-invalid':''}"
+									th:value="${contact.email}" />
+								<div th:if="${emailFieldErrors}" class="invalid-feedback">
+									<!--<div><h1 th:text="${session.message.content}"></h1></div>-->
+									<div th:each="e : ${emailFieldErrors}" th:text="${e.getDefaultMessage}">
+									</div>
+								</div>
+							</div>
+							<!--End of email field-->
+
+							<!-- Work field -->
+							<!--<div class="input-group  mt-3">
+								<div class="input-group-prepend">
+									<div class="input-group-text">
+										<i class="fa fa-briefcase"></i>
+									</div>
+								</div>
+								<input type="text" id = "work" name = "work" placeholder="Enter the work of the contact" class="form-control" />
+							</div>-->
+							<!--End of Work field-->
+
+							<!--Contact Description-->
+
+							<div class="form-group mt-3">
+								<textarea id="mytextarea" name="description" class="form-control" rows="10"
+									placeholder="Enter descripton for your contact"
+									th:text="${contact.description}"></textarea>
+							</div>
+
+							<!--End of Contact Description-->
+
+							<!--Image field-->
+							<div class="custom-file">
+								<label>Upload profile photo: </label>
+								<input type="file" name="profileImage" />
+							</div>
+
+							<!--End of Image field-->
+
+							<div class="container text-center">
+								<button class="btn btn-outline-primary" type="submit">Save</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+		<script>
+			tinymce.init({
+				selector: '#mytextarea'
+			});
+		</script>
+		<script>
+			//alert('this is dashboard');
+			$(document).ready(()=>{
+				$(".item").removeClass("active-sidebar");
+				$("#add-link").addClass("active-sidebar");
+			});
+		</script>
+	</section>
+</body>
+
+</html>

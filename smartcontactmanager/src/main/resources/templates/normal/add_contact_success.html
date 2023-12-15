@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base_user::layout(~{::section})">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>About</title>
+</head>
+
+<body>
+	<section>
+		<div class="container text-center">
+			<div class="container text-center">
+				<a th:href="@{/user/add_contact}"><button class="btn btn-outline-primary">Add new contact</button></a>
+
+			</div>
+		</div>
+		<script>
+			//alert('this is dashboard');
+			$(document).ready(() => {
+				$(".item").removeClass("active-sidebar");
+				$("#add-link").addClass("active-sidebar");
+			});
+		</script>
+	</section>
+</body>
+
+</html>

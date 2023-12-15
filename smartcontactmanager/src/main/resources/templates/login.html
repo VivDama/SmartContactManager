@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base::layout(~{::section})">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>About</title>
+</head>
+
+<body>
+	<section>
+		<div class="sidenav">
+			<div class="login-main-text text-center">
+				<h2>Smart Contact Manager</h2>
+				<p>Login to continue your smart journey</p>
+			</div>
+		</div>
+		<div class="main">
+			<div class="col-md-6 col-sm-12">
+				<div class="login-form">
+					<div th:if="${param.error}" class="alert alert-danger">
+						Invalid username or password. Please check your credentials and retry.
+					</div>
+					<div th:if="${param.logout}" class="alert alert-success">
+						You have been successfully logged out. Your contacts are safely stored with us. Feel free to return back anytime. 
+					</div>
+					<form th:action="@{/sign-in}" method="post">
+						<div class="form-group">
+							<label>User Name</label>
+							<input type="text" name="username" class="form-control" placeholder="User Name">
+						</div>
+						<div class="form-group">
+							<label>Password</label>
+							<input type="password" name="password" class="form-control" placeholder="Password">
+						</div>
+						<button type="submit" class="btn btn-black">Login</button>
+						<a th:href="@{/signup}"><button type="button" class="btn btn-secondary">Register</button></a>
+						
+						<div class="container text-center">
+							<a th:href="@{/forgot_password}">Forgot Password?</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+</html>

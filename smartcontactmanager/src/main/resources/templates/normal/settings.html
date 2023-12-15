@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base_user::layout(~{::section})">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>About</title>
+</head>
+
+<body>
+	<section>
+		<div class="card mr-3 ml-3">
+			<div class="card-body text-center">
+
+				<h2>Settings</h2>
+				<table class="table text-center table-borderless mt-3 ml-5">
+					<thead>
+						<tr>
+							<th scope="col">#User ID</th>
+							<th scope="col">SCMUSER<span th:text="${user.id}"></span></th>
+
+						</tr>
+					</thead>
+					<tbody>
+						<form action="@{/update_profile_details}" method="post"></form>
+						<tr>
+							<th scope="row">Name</th>
+							<td>
+								<a th:href="@{/user/change_name_form}">edit</a>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">Profile Picture</th>
+							<td>
+								<a th:href="@{/user/change_profilePicture_form}">edit</a>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row">Personal Note</th>
+							<td>
+								<a th:href="@{/user/change_personal_note_form}">edit</a>
+							</td>
+						</tr>
+
+						<tr>
+							<th scope="row">Password</th>
+							<td><a th:href="@{/user/change_password_form}">edit</a></td>
+						</tr>
+					</tbody>
+
+				</table>
+			</div>
+		</div>
+		<script>
+			//alert('this is dashboard');
+			$(document).ready(() => {
+				$(".item").removeClass("active-sidebar");
+				$("#settings-link").addClass("active-sidebar");
+			});
+		</script>
+	</section>
+</body>
+
+</html>
